@@ -20,7 +20,7 @@ class TestSklearnHistGradientBoostingClassifier(unittest.TestCase):
         X = np.array(X, dtype=np.float32)
         y = np.random.randint(2, size=10)
 
-        for model in [HistGradientBoostingClassifier(max_depth=2, max_iter=10)]:
+        for model in [HistGradientBoostingClassifier(max_iter=1, max_depth=1)]:
             for extra_config_param in ["tree_trav", "perf_tree_trav", "gemm"]:
                 model.fit(X, y)
 
@@ -89,7 +89,7 @@ class TestSklearnHistGradientBoostingClassifier(unittest.TestCase):
         X = np.random.rand(100, 200)
         X = np.array(X, dtype=np.float32)
         y = np.random.randint(3, size=100).astype(np.float32)  # y must be int, not float, should error
-        model = HistGradientBoostingClassifier().fit(X, y)
+        model = HistGradientBoostingClassifier(max_iter=10).fit(X, y)
         self.assertRaises(RuntimeError, hummingbird.ml.convert, model, "pytorch")
 
 
