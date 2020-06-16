@@ -21,6 +21,7 @@ class Scaler(torch.nn.Module):
             self.scale = torch.nn.Parameter(torch.FloatTensor([scale]), requires_grad=False)
         else:
             self.scale = None
+        self.regression = False
 
     def forward(self, x):
         if self.offset is not None:
