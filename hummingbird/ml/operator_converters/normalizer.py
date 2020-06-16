@@ -11,6 +11,7 @@ class Normalizer(torch.nn.Module):
     def __init__(self, norm, device):
         super(Normalizer, self).__init__()
         self.norm = norm
+        self.regression = False
 
     def forward(self, x):
         if self.norm == "l1":
